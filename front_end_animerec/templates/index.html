@@ -3,8 +3,10 @@
   <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/tailwind.min.css') }}"  media="screen,projection"/>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/custom.css') }}">
+    <!--link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/tailwind.min.css') }}"  media="screen,projection"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/custom.css') }}"-->
+    <link type="text/css" rel="stylesheet" href="/css/tailwind.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="/css/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Anime Recommender</title>
   </head>
@@ -55,7 +57,8 @@
         </form> 
     </div>
     
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
+    <!--script src="{{ url_for('static', filename='js/app.js') }}"></script-->
     
   </body>
 </html>

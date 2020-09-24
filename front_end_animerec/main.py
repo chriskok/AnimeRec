@@ -1,6 +1,6 @@
 from requests import get, post
-from flask import Flask, render_template
-
+from flask import Flask, render_template, send_from_directory
+import os
 
 app = Flask(__name__)
 
@@ -27,6 +27,16 @@ def get_recommendations(anime_name: str):
     if response.status_code == 200:        
         return response.content
     return {}
+
+@app.route('/js/<path:filename>')
+def serve_static_js(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'front_end_animerec', 'static', 'js'), filename)
+
+@app.route('/css/<path:filename>')
+def serve_static_css(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'front_end_animerec', 'static', 'css'), filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
