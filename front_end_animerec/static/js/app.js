@@ -107,14 +107,6 @@ function sendQuery(e) {
 
 }
 
-// Dropdown Menu Query Filter
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("animeDropdown").classList.toggle("show");
-}  // TODO insert the anime List in myDropdown!
-
 function filterFunction() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("selected-title");
@@ -144,7 +136,6 @@ function getRecommendations(name)
 //--------------Here is an example of how to use the function----------------
 var n = "one piece";
 var recom = getRecommendations(n);
-var names = getAnimeNames();
 
 // recom.onreadystatechange=(e)=>{
 //   //In here you can add the code that will display the response
