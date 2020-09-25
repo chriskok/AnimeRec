@@ -1,0 +1,19 @@
+version: '3'
+services:
+  webapp:
+    build: ./front_end_animerec
+    image: webapp:latest
+    container_name: webapp
+    ports:
+      - "5000:5000"
+    volumes:
+      - "/home/ec2-user/front_end_animerec:/front_end_animerec"
+  
+  api:
+    build: ./anime-recommendation-system
+    image: api:latest
+    container_name: api
+    ports:
+      - "8000:8000"
+    volumes:
+      - "/home/ec2-user/anime-recommendation-system:/api"

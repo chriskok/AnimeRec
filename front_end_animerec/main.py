@@ -3,11 +3,11 @@ from flask import Flask, render_template, send_from_directory, request, jsonify
 from flask_cors import CORS, cross_origin
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./static')
 CORS(app, support_credentials=True)
 
 #Url that points to where the api is running on
-API_URL = "http://127.0.0.1:8000"
+API_URL = "http://3.131.210.47:8000"
 
 @app.route("/", methods=["GET"])
 @cross_origin(supports_credentials=True)

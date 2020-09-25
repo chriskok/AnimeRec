@@ -14,7 +14,8 @@ function eventListeners() {
 
 //This function gets the anime names from the server
 function getAnimeNames(){
-  const URL = SERVER_URI + "get-names";
+  // const URL = SERVER_URI + "get-names";
+  const URL = "get-names";
   names_request_xhttp = new XMLHttpRequest();
   names_request_xhttp.open("GET", URL, true);
   names_request_xhttp.send();
@@ -128,7 +129,8 @@ function filterFunction() {
 function getRecommendations(name)
 {
   recommendations_xhttp = new XMLHttpRequest();   // new HttpRequest instance   
-  const RECOMMENDATIONS_URL = SERVER_URI + "get-recommendations/" + name;
+  const RECOMMENDATIONS_URL = "get-recommendations/" + name;
+  // const RECOMMENDATIONS_URL = SERVER_URI + "get-recommendations/" + name;
   recommendations_xhttp.open("POST", RECOMMENDATIONS_URL);
   recommendations_xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   recommendations_xhttp.send();  
