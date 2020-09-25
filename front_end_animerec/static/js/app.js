@@ -27,16 +27,18 @@ function appInit() {
   sendButton.classList.add('cursor-not-allowed', 'opacity-50');
 
   var names = getAnimeNames();
-  names.onreadystatechange=(e)=>{
-    // populate dropdown
-    var select = document.getElementById("anime_names"); 
-    var name_list = JSON.parse(names_request_xhttp.responseText)['names'];
-    for(var i = 0; i < name_list.length; i++) {
-        var opt = name_list[i];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select.appendChild(el);
+  names.onreadystatechange = function () {
+    if (names.readyState === 4) {
+      // populate dropdown
+      var select = document.getElementById("anime_names"); 
+      var name_list = JSON.parse(names_request_xhttp.responseText)['names'];
+      for(var i = 0; i < name_list.length; i++) {
+          var opt = name_list[i];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+      }
     }
   }
 }
@@ -137,7 +139,11 @@ function getRecommendations(name)
 var n = "one piece";
 var recom = getRecommendations(n);
 
-recom.onreadystatechange=(e)=>{
-  json_recom = JSON.parse(recom.responseText);
-  console.log(json_recom);
+recom.onreadystatechange = function () {
+  // ready state 'complete = 4'
+  // without checking it will run multiple times for multiple ready states
+  if (recom.readyState === 4) {
+    json_recom = JSON.parse(recom.responseText);
+    console.log(json_recom);
+  }
 }
