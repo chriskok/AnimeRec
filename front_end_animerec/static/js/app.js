@@ -42,7 +42,7 @@ function appInit() {
 }
 
 // Validate fields 
-animeName.addEventListener('blur', validateSubmission);
+animeName.addEventListener('change', validateSubmission);
 
 function validateSubmission(e) {
   var animeList = names_request_xhttp.responseText;
