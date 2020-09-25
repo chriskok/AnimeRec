@@ -12,11 +12,33 @@ function eventListeners() {
   document.addEventListener('DOMContentLoaded', appInit);
 }
 
+//This function gets the anime names from the server
+function getAnimeNames(){
+  const URL = SERVER_URI + "get-names";
+  names_request_xhttp = new XMLHttpRequest();
+  names_request_xhttp.open("GET", URL, true);
+  names_request_xhttp.send();
+  return names_request_xhttp;
+}
 
 // ####### Functions ############
 function appInit() {
   sendButton.disabled = true;
-  sendButton.classList.add('cursor-not-allowed', 'opacity-50')
+  sendButton.classList.add('cursor-not-allowed', 'opacity-50');
+
+  var names = getAnimeNames();
+  names.onreadystatechange=(e)=>{
+    // populate dropdown
+    var select = document.getElementById("anime_names"); 
+    var name_list = JSON.parse(names_request_xhttp.responseText)['names'];
+    for(var i = 0; i < name_list.length; i++) {
+        var opt = name_list[i];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+    }
+  }
 }
 
 // Validate fields 
@@ -24,7 +46,7 @@ animeName.addEventListener('blur', validateSubmission);
 
 function validateSubmission(e) {
   var animeList = names_request_xhttp.responseText;
-  console.log(animeList);
+  // console.log(animeList);
   if (e.target.value.length > 0) {
     var isItIn = animeList.includes(e.target.value);
 
@@ -90,7 +112,7 @@ function sendQuery(e) {
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("animeDropdown").classList.toggle("show");
 }  // TODO insert the anime List in myDropdown!
 
 function filterFunction() {
@@ -117,15 +139,6 @@ function getRecommendations(name)
   recommendations_xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   recommendations_xhttp.send();  
   return recommendations_xhttp
-}
-
-//This function gets the anime names from the server
-function getAnimeNames(){
-  const URL = SERVER_URI + "get-names";
-  names_request_xhttp = new XMLHttpRequest();
-  names_request_xhttp.open("GET", URL, true);
-  names_request_xhttp.send();
-  return names_request_xhttp;
 }
 
 //--------------Here is an example of how to use the function----------------
