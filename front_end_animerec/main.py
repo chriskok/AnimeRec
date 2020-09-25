@@ -44,4 +44,4 @@ def serve_static_css(filename):
     return send_from_directory(os.path.join(root_dir, 'front_end_animerec', 'static', 'css'), filename)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
