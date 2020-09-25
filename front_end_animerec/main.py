@@ -1,18 +1,22 @@
 from requests import get, post
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, request, jsonify
+from flask_cors import CORS, cross_origin
 import os
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 #Url that points to where the api is running on
 API_URL = "http://127.0.0.1:8000"
 
 @app.route("/", methods=["GET"])
+@cross_origin(supports_credentials=True)
 def main():
     return render_template("./index.html")
 
 
 @app.route("/get-names", methods=["GET"])
+@cross_origin(supports_credentials=True)
 def get_names():
     response = get(url=f"{API_URL}/api/v1/get_names")
     if response.status_code == 200:        
@@ -20,6 +24,7 @@ def get_names():
     return {"names": []}
 
 @app.route("/get-recommendations/<string:anime_name>", methods=["POST"])
+@cross_origin(supports_credentials=True)
 def get_recommendations(anime_name: str):
     response = get(
         url=f"{API_URL}/api/v1/get_recommendations?anime_names={anime_name.replace(' ', '%20')}")

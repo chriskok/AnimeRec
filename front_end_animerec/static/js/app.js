@@ -7,15 +7,6 @@ const SERVER_URI = "http://127.0.0.1:5000/";
 var names_request_xhttp;
 var recommendations_xhttp;
 
-//This function gets the anime names from the server
-getAnimeNames();
-function getAnimeNames(){
-  const URL = SERVER_URI + "get-names";
-  names_request_xhttp = new XMLHttpRequest();
-  names_request_xhttp.open("GET", URL, true);
-  names_request_xhttp.send();
-}
-
 eventListeners();
 function eventListeners() {
   document.addEventListener('DOMContentLoaded', appInit);
@@ -94,7 +85,6 @@ function sendQuery(e) {
 
 }
 
-
 // Dropdown Menu Query Filter
 
 /* When the user clicks on the button,
@@ -107,7 +97,7 @@ function filterFunction() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("selected-title");
   filter = input.value.toUpperCase();
-  div = document.getElementById("spinner"); // TODO insert the anime List in myDropdown!
+  div = document.getElementById("spinner"); 
   a = div.getElementsByTagName("a");
   for (i = 0; i < a.length; i++) {
     txtValue = a[i].textContent || a[i].innerText;
@@ -129,10 +119,23 @@ function getRecommendations(name)
   return recommendations_xhttp
 }
 
+//This function gets the anime names from the server
+function getAnimeNames(){
+  const URL = SERVER_URI + "get-names";
+  names_request_xhttp = new XMLHttpRequest();
+  names_request_xhttp.open("GET", URL, true);
+  names_request_xhttp.send();
+  return names_request_xhttp;
+}
+
 //--------------Here is an example of how to use the function----------------
 var n = "one piece";
 var recom = getRecommendations(n);
-recom.onreadystatechange=(e)=>{
-  //In here you can add the code that will display the response
-  console.log(recom.response);
-}
+var names = getAnimeNames();
+
+// recom.onreadystatechange=(e)=>{
+//   //In here you can add the code that will display the response
+//   console.log(recom.response);
+//   console.log(names.response);
+
+// }
