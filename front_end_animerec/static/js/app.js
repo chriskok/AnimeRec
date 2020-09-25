@@ -137,9 +137,7 @@ function getRecommendations(name)
 var n = "one piece";
 var recom = getRecommendations(n);
 
-// recom.onreadystatechange=(e)=>{
-//   //In here you can add the code that will display the response
-//   console.log(recom.response);
-//   console.log(names.response);
-
-// }
+recom.onreadystatechange=(e)=>{
+  json_recom = JSON.parse(recom.responseText);
+  console.log(json_recom);
+}
