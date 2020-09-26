@@ -104,8 +104,8 @@ selectedAnime.addEventListener('submit', sendQuery)
 function sendQuery(e) {
   e.preventDefault();
   //show spinner
-  const spinner = document.querySelector('#spinner');
-  spinner.style.display = 'flex';
+  // const spinner = document.querySelector('#spinner');
+  // spinner.style.display = 'flex';
 
   var chosen_anime = document.getElementById("selected-title").value;
   console.log('Query Sent: ' + chosen_anime);
@@ -116,19 +116,31 @@ function sendQuery(e) {
     // without checking it will run multiple times for multiple ready states
     if (current_recom.readyState === 4) {
       var json_recom = JSON.parse(current_recom.responseText);
-      console.log(json_recom);
+      var recom_dict = json_recom["recommendations"][chosen_anime];
+      for (var key in recom_dict) {
+        // check if the property/key is defined in the object itself, not in parent
+        if (recom_dict.hasOwnProperty(key)) {       
+          individual_rec_dict = recom_dict[key];
+          console.log(key, recom_dict[key]);
+          const recommendation = document.createElement('p');
+          recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
+          recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
+
+          selectedAnime.appendChild(recommendation);
+        }
+      }
     }
   }
 
-  setTimeout(() => {
-    spinner.style.display = 'none';
+  // setTimeout(() => {
+  //   spinner.style.display = 'none';
 
-    const recommendation = document.createElement('p');
-    recommendation.textContent = 'Recommended Item Placeholder'
-    recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
+  //   const recommendation = document.createElement('p');
+  //   recommendation.textContent = 'Recommended Item Placeholder'
+  //   recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
 
-    selectedAnime.appendChild(recommendation);
-  }, 3000);
+  //   selectedAnime.appendChild(recommendation);
+  // }, 3000);
 
 }
 
