@@ -44,6 +44,17 @@ function appInit() {
   }
 }
 
+function requestRecommendations(name)
+{
+  recommendations_xhttp = new XMLHttpRequest();   // new HttpRequest instance   
+  const RECOMMENDATIONS_URL = "get-recommendations/" + name;
+  // const RECOMMENDATIONS_URL = SERVER_URI + "get-recommendations/" + name;
+  recommendations_xhttp.open("POST", RECOMMENDATIONS_URL);
+  recommendations_xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  recommendations_xhttp.send();  
+  return recommendations_xhttp
+}
+
 // Validate fields 
 animeName.addEventListener('change', validateSubmission);
 
@@ -61,7 +72,6 @@ function validateSubmission(e) {
       sendButton.disabled = false;
       sendButton.classList.remove('cursor-not-allowed', 'opacity-50');
 
-      console.log('Coool , Recommend all!');
     } else {
       e.target.classList.remove('border-green-500');
       e.target.classList.add('border-red-500');
@@ -96,7 +106,19 @@ function sendQuery(e) {
   //show spinner
   const spinner = document.querySelector('#spinner');
   spinner.style.display = 'flex';
-  console.log('Query Sent');
+
+  var chosen_anime = document.getElementById("selected-title").value;
+  console.log('Query Sent: ' + chosen_anime);
+  var current_recom = requestRecommendations(chosen_anime);
+
+  current_recom.onreadystatechange = function () {
+    // ready state 'complete = 4'
+    // without checking it will run multiple times for multiple ready states
+    if (current_recom.readyState === 4) {
+      var json_recom = JSON.parse(current_recom.responseText);
+      console.log(json_recom);
+    }
+  }
 
   setTimeout(() => {
     spinner.style.display = 'none';
@@ -126,26 +148,16 @@ function filterFunction() {
   }
 }
 
-function getRecommendations(name)
-{
-  recommendations_xhttp = new XMLHttpRequest();   // new HttpRequest instance   
-  const RECOMMENDATIONS_URL = "get-recommendations/" + name;
-  // const RECOMMENDATIONS_URL = SERVER_URI + "get-recommendations/" + name;
-  recommendations_xhttp.open("POST", RECOMMENDATIONS_URL);
-  recommendations_xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  recommendations_xhttp.send();  
-  return recommendations_xhttp
-}
 
 //--------------Here is an example of how to use the function----------------
-var n = "one piece";
-var recom = getRecommendations(n);
+// var n = "one piece";
+// var recom = requestRecommendations(n);
 
-recom.onreadystatechange = function () {
-  // ready state 'complete = 4'
-  // without checking it will run multiple times for multiple ready states
-  if (recom.readyState === 4) {
-    json_recom = JSON.parse(recom.responseText);
-    console.log(json_recom);
-  }
-}
+// recom.onreadystatechange = function () {
+//   // ready state 'complete = 4'
+//   // without checking it will run multiple times for multiple ready states
+//   if (recom.readyState === 4) {
+//     json_recom = JSON.parse(recom.responseText);
+//     console.log(json_recom);
+//   }
+// }
