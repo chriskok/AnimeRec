@@ -119,11 +119,35 @@ function sendQuery(e) {
       var recom_dict = json_recom["recommendations"][chosen_anime];
       for (var key in recom_dict) {
         // check if the property/key is defined in the object itself, not in parent
-        if (recom_dict.hasOwnProperty(key)) {       
+        if (recom_dict.hasOwnProperty(key)) {  
+          const prevreccom = document.querySelector('p.bg-orange-500');
+          if (prevreccom) { prevreccom.remove() } ; 
+          
           individual_rec_dict = recom_dict[key];
           console.log(key, recom_dict[key]);
-          const recommendation = document.createElement('p');
-          recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
+
+
+
+          const recommendation = document.createElement('div');
+          const animeTitle = 'Deadpool Fans Petition for Superhero to Host'; // Here goes the recommended title
+          const animeDescription = 'This is the story of Deadpool, ipsum lapsum dader amet'; // Here goes the recommended title
+          const animeImage = "http://cdn3.whatculture.com/wp-content/uploads/2015/10/f5S3dvUb.jpg";
+          recommendation.innerHTML = `
+                                    <div class="main-topic">
+                                    <div class="left-text">
+                                      <h3>$(animeTitle)</h3>
+                                      <p>
+                                      $(animeDescription)
+                                      </p>
+                                    </div>
+                                
+                                      <div class="right-picture">
+                                      <img src= $(animeImage)>
+                                    </div>
+                                        
+                                </div>
+          `
+          // recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
           recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
 
           selectedAnime.appendChild(recommendation);
