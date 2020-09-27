@@ -158,7 +158,8 @@ display: block;
 
 /* Recommendation Display CSS  */
 .main-topic{
-  display: block;
+  /* display: block; */
+  margin: 0 auto
 }
 /** Clearfix **/
 .main-topic::after{
@@ -166,16 +167,19 @@ display: block;
   display:block;
   clear:both;
 }
-.left-text{
-  width:50%;
+.recommendation-text{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.recommendation-picture{
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   float:left;
 }
-.right-picture{
-  float:right;
-  width:50%;
-}
-.right-picture img{
-  max-width:100%
+.recommendation-picture img{
+  max-width:150px;
 }
 
 h1{font-size:64px;}

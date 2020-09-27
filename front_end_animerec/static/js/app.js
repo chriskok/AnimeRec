@@ -140,19 +140,18 @@ function sendQuery(e) {
           recommendation.className = "recommendation"
           recommendation.innerHTML = 
           `
+            <div class="recommendation-picture">
+              <img src=` + animeImage +  `>
+            </div>
             <div class="main-topic">
-              <div class="left-text">
-                <h5>` + animeTitle + `</h5>
+              <div class="recommendation-text">
+                <h5><u>` + animeTitle + `</u></h5>
                 <p>` + animeDescription + `</p>
-              </div>
-          
-              <div class="right-picture">
-                <img src=` + animeImage +  `>
               </div>
             </div>
           `
           // recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
-          recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
+          recommendation.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
 
           selectedAnime.appendChild(recommendation);
         }
