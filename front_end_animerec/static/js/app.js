@@ -96,6 +96,13 @@ function displayError() {
 
 }
 
+// Function to remove element by class name
+function removeElement(class_name) {
+  var elements = document.getElementsByClassName(class_name);
+  while (elements[0]) {
+      elements[0].parentNode.removeChild(elements[0]);
+  }
+}
 
 //### Send Request
 
@@ -117,35 +124,32 @@ function sendQuery(e) {
     if (current_recom.readyState === 4) {
       var json_recom = JSON.parse(current_recom.responseText);
       var recom_dict = json_recom["recommendations"][chosen_anime];
+      removeElement("recommendation"); // remove all preexisting recommendations
+
       for (var key in recom_dict) {
         // check if the property/key is defined in the object itself, not in parent
-        if (recom_dict.hasOwnProperty(key)) {  
-          const prevreccom = document.querySelector('p.bg-orange-500');
-          if (prevreccom) { prevreccom.remove() } ; 
+        if (recom_dict.hasOwnProperty(key)) { 
           
           individual_rec_dict = recom_dict[key];
           console.log(key, recom_dict[key]);
 
-
-
           const recommendation = document.createElement('div');
-          const animeTitle = 'Deadpool Fans Petition for Superhero to Host'; // Here goes the recommended title
-          const animeDescription = 'This is the story of Deadpool, ipsum lapsum dader amet'; // Here goes the recommended title
-          const animeImage = "http://cdn3.whatculture.com/wp-content/uploads/2015/10/f5S3dvUb.jpg";
-          recommendation.innerHTML = `
-                                    <div class="main-topic">
-                                    <div class="left-text">
-                                      <h3>$(animeTitle)</h3>
-                                      <p>
-                                      $(animeDescription)
-                                      </p>
-                                    </div>
-                                
-                                      <div class="right-picture">
-                                      <img src= $(animeImage)>
-                                    </div>
-                                        
-                                </div>
+          const animeTitle = individual_rec_dict['full_title']; // Here goes the recommended title
+          const animeDescription = individual_rec_dict['synopsis']; // Here goes the recommended title
+          const animeImage = individual_rec_dict['image_url'];
+          recommendation.className = "recommendation"
+          recommendation.innerHTML = 
+          `
+            <div class="main-topic">
+              <div class="left-text">
+                <h5>` + animeTitle + `</h5>
+                <p>` + animeDescription + `</p>
+              </div>
+          
+              <div class="right-picture">
+                <img src=` + animeImage +  `>
+              </div>
+            </div>
           `
           // recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
           recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
