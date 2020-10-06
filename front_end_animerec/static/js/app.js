@@ -117,6 +117,15 @@ function sendQuery(e) {
   var chosen_anime = document.getElementById("selected-title").value;
   console.log('Query Sent: ' + chosen_anime);
   var current_recom = requestRecommendations(chosen_anime);
+  
+  gtag('event', 'search', {
+    'event_label' : chosen_anime
+  });
+
+  gtag('event', 'test_search_action', {
+    'event_label' : chosen_anime,
+    'event_category' : 'search'
+  });
 
   current_recom.onreadystatechange = function () {
     // ready state 'complete = 4'
