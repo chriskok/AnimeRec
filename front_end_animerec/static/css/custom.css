@@ -157,10 +157,9 @@ display: block;
 .show {display:block;}
 
 /* Recommendation Display CSS  */
-.main-topic{
-  /* display: block; */
+/* .main-topic{
   margin: 0 auto
-}
+} */
 /** Clearfix **/
 .main-topic::after{
   content:"";
@@ -176,10 +175,14 @@ display: block;
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  float:left;
 }
-.recommendation-picture img{
-  max-width:150px;
+
+.button-div{
+  margin: auto;
+  text-align: center;
+}
+.button-div button{
+  margin-top: 10px;
 }
 
 h1{font-size:64px;}

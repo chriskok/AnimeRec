@@ -104,9 +104,21 @@ function removeElement(class_name) {
   }
 }
 
+function rateRecs(query, rec, rating){
+  console.log(query + " -> " + rec + " = " + rating + " (1 = like, 0 = dislike)");
+
+  // if rating is 1 = like, 0 = dislike
+
+  gtag('event', 'rec_rating', {
+    'event_category' : query,
+    'event_label' : rec,
+    'value': rating
+  });
+}
+
 //### Send Request
 
-selectedAnime.addEventListener('submit', sendQuery)
+document.getElementById("submit").addEventListener('click', sendQuery)
 
 function sendQuery(e) {
   e.preventDefault();
@@ -149,15 +161,27 @@ function sendQuery(e) {
           recommendation.className = "recommendation"
           recommendation.innerHTML = 
           `
-            <div class="recommendation-picture">
+          <div class="md:flex mb-4">
+            <div class="recommendation-picture md:w-1/6">
               <img src=` + animeImage +  `>
             </div>
-            <div class="main-topic">
+            <div class="main-topic md:w-4/6">
               <div class="recommendation-text">
                 <h5><u>` + animeTitle + `</u></h5>
                 <p>` + animeDescription + `</p>
               </div>
             </div>
+            <div class="button-div md:w-1/6">
+              <button type="button" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1)">
+                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"/></svg>
+                Like
+              </button>
+              <button type="button" class="block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',0)">
+                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"/></svg>
+                Dislike 
+              </button>
+            </div>
+          </div>
           `
           // recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
           recommendation.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
