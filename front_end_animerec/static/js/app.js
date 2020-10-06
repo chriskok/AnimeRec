@@ -108,8 +108,8 @@ function rateRecs(query, rec, rating, button_id){
   console.log(query + " -> " + rec + " = " + rating + " (1 = like, 0 = dislike)");
 
   // if rating is 1 = like, 0 = dislike
-  gtag('event', 'rec_rating', {
-    'event_category' : query,
+  gtag('event', query, {
+    'event_category' : 'rec_rating',
     'event_label' : rec,
     'value': rating
   });
@@ -142,11 +142,6 @@ function sendQuery(e) {
   
   gtag('event', 'search', {
     'event_label' : chosen_anime
-  });
-
-  gtag('event', 'test_search_action', {
-    'event_label' : chosen_anime,
-    'event_category' : 'search'
   });
 
   current_recom.onreadystatechange = function () {
