@@ -126,15 +126,12 @@ function rateRecs(query, rec, rating, button_id){
   dislikebtn.classList.add("opacity-75");
 }
 
-//### Send Request
+document.getElementById("submit").addEventListener('click', sendQuery);
+var REC_DICT = {};  // global dictionary for current recommendations
 
-document.getElementById("submit").addEventListener('click', sendQuery)
-
+// Function to send query and process results
 function sendQuery(e) {
   e.preventDefault();
-  //show spinner
-  // const spinner = document.querySelector('#spinner');
-  // spinner.style.display = 'flex';
 
   var chosen_anime = document.getElementById("selected-title").value;
   console.log('Query Sent: ' + chosen_anime);
@@ -150,6 +147,7 @@ function sendQuery(e) {
     if (current_recom.readyState === 4) {
       var json_recom = JSON.parse(current_recom.responseText);
       var recom_dict = json_recom["recommendations"][chosen_anime];
+      REC_DICT = recom_dict;
       removeElement("recommendation"); // remove all preexisting recommendations
 
       for (var key in recom_dict) {
@@ -168,7 +166,7 @@ function sendQuery(e) {
           `
           <div class="md:flex mb-4">
             <div class="recommendation-picture md:w-1/6">
-              <img src=` + animeImage +  `>
+              <img src="` + animeImage +  `" onclick="fillModal(` + key + `)">
             </div>
             <div class="main-topic md:w-4/6">
               <div class="recommendation-text">
@@ -197,16 +195,6 @@ function sendQuery(e) {
     }
   }
 
-  // setTimeout(() => {
-  //   spinner.style.display = 'none';
-
-  //   const recommendation = document.createElement('p');
-  //   recommendation.textContent = 'Recommended Item Placeholder'
-  //   recommendation.classList.add('text-center', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
-
-  //   selectedAnime.appendChild(recommendation);
-  // }, 3000);
-
 }
 
 function filterFunction() {
@@ -223,6 +211,50 @@ function filterFunction() {
       a[i].style.display = "none";
     }
   }
+}
+
+// MODAL FUNCTIONS
+function fillModal(key){
+  console.log(REC_DICT[key]);  // TODO: fill in modal with relevant information
+  toggleModal()
+}
+
+var openmodal = document.querySelectorAll('.modal-open')
+for (var i = 0; i < openmodal.length; i++) {
+  openmodal[i].addEventListener('click', function(event){
+    event.preventDefault()
+    toggleModal()
+  })
+}
+
+const overlay = document.querySelector('.modal-overlay')
+overlay.addEventListener('click', toggleModal)
+
+var closemodal = document.querySelectorAll('.modal-close')
+for (var i = 0; i < closemodal.length; i++) {
+  closemodal[i].addEventListener('click', toggleModal)
+}
+
+document.onkeydown = function(evt) {
+  evt = evt || window.event
+  var isEscape = false
+  if ("key" in evt) {
+    sEscape = (evt.key === "Escape" || evt.key === "Esc")
+  } else {
+    isEscape = (evt.keyCode === 27)
+  }
+  if (isEscape && document.body.classList.contains('modal-active')) {
+    toggleModal()
+  }
+};
+
+
+function toggleModal () {
+  const body = document.querySelector('body')
+  const modal = document.querySelector('.modal')
+  modal.classList.toggle('opacity-0')
+  modal.classList.toggle('pointer-events-none')
+  body.classList.toggle('modal-active')
 }
 
 

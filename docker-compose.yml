@@ -8,6 +8,11 @@ services:
       - "5000:5000"
     volumes:
       - "/home/ec2-user/front_end_animerec:/front_end_animerec"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 250M
   
   api:
     build: ./anime-recommendation-system

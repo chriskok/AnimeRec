@@ -185,6 +185,14 @@ display: block;
   margin-top: 10px;
 }
 
+.modal {
+  transition: opacity 0.25s ease;
+}
+body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
 h1{font-size:64px;}
 h2{font-size:48px;}
 h3{font-size:36px;}
