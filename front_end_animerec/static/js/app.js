@@ -215,7 +215,11 @@ function filterFunction() {
 
 // MODAL FUNCTIONS
 function fillModal(key){
-  console.log(REC_DICT[key]);  // TODO: fill in modal with relevant information
+  var current_dict = REC_DICT[key];
+  document.getElementById("modal-title").innerHTML = current_dict['full_title'];
+  document.getElementById("modal-synopsis").innerHTML = "Synopsis: " + current_dict['synopsis'] + "\n";
+  document.getElementById("modal-score").innerHTML = "Score: " + current_dict['score'] + "\n";
+  document.getElementById("modal-type").innerHTML = "Type: " + current_dict['type'] + "\n";
   toggleModal()
 }
 
