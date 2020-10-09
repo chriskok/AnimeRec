@@ -148,7 +148,7 @@ function sendQuery(e) {
       var json_recom = JSON.parse(current_recom.responseText);
       var recom_dict = json_recom["recommendations"][chosen_anime];
       REC_DICT = recom_dict;
-      removeElement("recommendation"); // remove all preexisting recommendations
+      removeElement("recommendation_row"); // remove all preexisting recommendations
 
       for (var key in recom_dict) {
         // check if the property/key is defined in the object itself, not in parent
@@ -156,40 +156,42 @@ function sendQuery(e) {
           
           individual_rec_dict = recom_dict[key];
           console.log(key, recom_dict[key]);
+          
+          const recommendation_row = document.createElement('div');
+          recommendation_row.className = "recommendation_row"
+          recommendation_row.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'inline-flex');
 
-          const recommendation = document.createElement('div');
-          const animeTitle = individual_rec_dict['full_title']; // Here goes the recommended title
-          const animeDescription = individual_rec_dict['synopsis']; // Here goes the recommended title
-          const animeImage = individual_rec_dict['image_url'];
-          recommendation.className = "recommendation"
-          recommendation.innerHTML = 
-          `
-          <div class="md:flex mb-4">
-            <div class="recommendation-picture md:w-1/6">
-              <img src="` + animeImage +  `" onclick="fillModal(` + key + `)">
-            </div>
-            <div class="main-topic md:w-4/6">
-              <div class="recommendation-text">
-                <h5><u>` + animeTitle + `</u></h5>
-                <p>` + animeDescription + `</p>
+          for (i = 0; i < 5; i++) {
+            const recommendation = document.createElement('div');
+            const animeTitle = individual_rec_dict['full_title']; // Here goes the recommended title
+            const animeDescription = individual_rec_dict['synopsis']; 
+            const animeImage = individual_rec_dict['image_url'];
+            recommendation.className = "recommendation"
+            recommendation.classList.add("flex-1");
+            recommendation.innerHTML = 
+            `
+              <div class="text-center text-base md:text-lg">
+                <p> ` + animeTitle + ` </p>
               </div>
-            </div>
-            <div class="button-div md:w-1/6">
-              <button type="button" id="likebtn-` + key + `" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1, '` + key + `')">
-                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"/></svg>
-                Like
-              </button>
-              <button type="button" id="dislikebtn-` + key + `" class="block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',0, '` + key + `')">
-                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"/></svg>
-                Dislike 
-              </button>
-            </div>
-          </div>
-          `
-          // recommendation.textContent = individual_rec_dict['full_title'] + ": " + individual_rec_dict['synopsis'] 
-          recommendation.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold');
+              <div class="recommendation-picture mb-4">
+                <img src="` + animeImage +  `" onclick="fillModal(` + key + `)">
+              </div>
+              <div class="button-div mb-4">
+                <button type="button" id="likebtn-` + key + `" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1, '` + key + `')">
+                  <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"/></svg>
+                  Like
+                </button>
+                <button type="button" id="dislikebtn-` + key + `" class="block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',0, '` + key + `')">
+                  <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"/></svg>
+                  Dislike 
+                </button>
+              </div>
+            `
 
-          selectedAnime.appendChild(recommendation);
+            recommendation_row.appendChild(recommendation);
+          }
+
+          selectedAnime.appendChild(recommendation_row);
         }
       }
     }
