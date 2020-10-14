@@ -201,11 +201,11 @@ function sendQuery(e) {
               const animeTitle = individual_rec_dict['full_title']; 
               const animeImage = individual_rec_dict['image_url'];
               recommendation.className = "recommendation"
-              recommendation.classList.add("flex-1");
+              recommendation.classList.add("flex-1", "recommendation-container");
               recommendation.innerHTML = 
               `
-                <div class="text-center text-base md:text-lg">
-                  <p>` + animeTitle + `</p>
+                <div class="recommendation-text mx-2 text-center text-base lg:text-lg">
+                  ` + animeTitle + `
                 </div>
                 <div class="recommendation-picture cursor-pointer mb-4">
                   <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">

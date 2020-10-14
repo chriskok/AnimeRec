@@ -167,10 +167,11 @@ display: block;
   clear:both;
 }
 .recommendation-text{
-  margin-right: 5px;
-  margin-left: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.recommendation-title{
+.recommendation-container{
   min-width: 0;
 }
 .recommendation-picture{
