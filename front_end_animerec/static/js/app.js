@@ -126,6 +126,33 @@ function rateRecs(query, rec, rating, rec_type, button_id){
   dislikebtn.classList.add("opacity-75");
 }
 
+function addTitle(rec_type){
+  const title = document.createElement('h4');
+  // recommendation.className = "recommendation"
+  title.classList.add('font-sans', 'font-bold', "text-center");
+
+  var html_fill = rec_type;
+  switch(rec_type) {
+    case "hot":
+      html_fill = "Recent within the Same Genre(s)"
+      break;
+    case "beloved":
+      html_fill = "Highly-Rated within the Same Genre(s)"
+      break;
+    case "similarly_described":
+      html_fill = "Similarly Described in Reviews"
+      break;
+    case "similar_synopsis":
+      html_fill = "Similarly Described in Synopses"
+      break;
+    default:
+      // do nothing
+  }
+  title.innerHTML = html_fill;
+
+  selectedAnime.appendChild(title);
+}
+
 document.getElementById("submit").addEventListener('click', sendQuery);
 var REC_DICT = {};  // global dictionary for current recommendations
 
@@ -155,12 +182,14 @@ function sendQuery(e) {
         // check if the property/key is defined in the object itself, not in parent
         if (json_recom.hasOwnProperty(type)) { 
 
+          addTitle(type);
+
           var recom_dict = json_recom[type];
 
           // Create the row for the recommendations to fall under
           const recommendation_row = document.createElement('div');
           recommendation_row.className = "recommendation_row"
-          recommendation_row.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'flex');
+          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'flex');
           
           // Go over each anime list for the particular type of recommendation
           for (var curr_key in recom_dict) {
