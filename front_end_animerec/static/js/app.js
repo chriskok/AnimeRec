@@ -160,7 +160,7 @@ function sendQuery(e) {
           // Create the row for the recommendations to fall under
           const recommendation_row = document.createElement('div');
           recommendation_row.className = "recommendation_row"
-          recommendation_row.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'inline-flex');
+          recommendation_row.classList.add('text-left', 'my-10', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'flex');
           
           // Go over each anime list for the particular type of recommendation
           for (var curr_key in recom_dict) {
@@ -176,7 +176,7 @@ function sendQuery(e) {
               recommendation.innerHTML = 
               `
                 <div class="text-center text-base md:text-lg">
-                  <p> ` + animeTitle + ` </p>
+                  <p>` + animeTitle + `</p>
                 </div>
                 <div class="recommendation-picture cursor-pointer mb-4">
                   <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">

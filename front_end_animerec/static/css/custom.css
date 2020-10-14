@@ -170,6 +170,9 @@ display: block;
   margin-right: 5px;
   margin-left: 5px;
 }
+.recommendation-title{
+  min-width: 0;
+}
 .recommendation-picture{
   margin-right: 10px;
   margin-left: 10px;
