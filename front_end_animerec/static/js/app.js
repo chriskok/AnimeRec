@@ -128,7 +128,7 @@ function rateRecs(query, rec, rating, rec_type, button_id){
 
 function addTitle(rec_type){
   const title = document.createElement('h4');
-  // recommendation.className = "recommendation"
+  title.className = "recommendation_row_title"
   title.classList.add('font-sans', 'font-bold', "text-center");
 
   var html_fill = rec_type;
@@ -176,6 +176,7 @@ function sendQuery(e) {
       REC_DICT = json_recom;
       console.log(json_recom);
       removeElement("recommendation_row"); // remove all preexisting recommendations
+      removeElement("recommendation_row_title"); // remove all preexisting recommendations
           
       // Go over each type of recommendation
       for (var type in json_recom) {
