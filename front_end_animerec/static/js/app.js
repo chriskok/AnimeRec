@@ -134,16 +134,16 @@ function addTitle(rec_type){
   var html_fill = rec_type;
   switch(rec_type) {
     case "hot":
-      html_fill = "Recent within the Same Genre(s)"
+      html_fill = "Newest and Most Similar"
       break;
     case "beloved":
-      html_fill = "Highly-Rated within the Same Genre(s)"
+      html_fill = "Popular and Most Similar"
       break;
     case "similarly_described":
-      html_fill = "Similarly Described in Reviews"
+      html_fill = "Similar Reviews"
       break;
     case "similar_synopsis":
-      html_fill = "Similarly Described in Synopses"
+      html_fill = "Similar Plot"
       break;
     default:
       // do nothing
