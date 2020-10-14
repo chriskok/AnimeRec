@@ -27,7 +27,7 @@ def get_names():
 @cross_origin(supports_credentials=True)
 def get_recommendations(anime_name: str):
     response = get(
-        url=f"{API_URL}/api/v1/get_recommendations?anime_names={anime_name.replace(' ', '%20')}")
+        url=f"{API_URL}/api/v1/get_recommendations?anime_name={anime_name.replace(' ', '%20')}")
 
     if response.status_code == 200:        
         return response.content
