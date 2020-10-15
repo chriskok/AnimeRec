@@ -1,4 +1,4 @@
-# ChronicCoderAcademy
+# Anime Recommendation System
 
 ## User Interface Shape 
 
