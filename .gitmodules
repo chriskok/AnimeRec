@@ -1,0 +1,3 @@
+[submodule "anime-recommendation-system"]
+	path = anime-recommendation-system
+	url = https://github.com/TheTuringExperience/anime-recommendation-system.git
