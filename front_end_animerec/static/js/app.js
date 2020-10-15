@@ -255,10 +255,11 @@ function filterFunction() {
 function fillModal(type, key){
   var current_dict = REC_DICT[type][key];
   document.getElementById("modal-title").innerHTML = current_dict['full_title'];
-  document.getElementById("modal-synopsis").innerHTML = "Synopsis: " + current_dict['synopsis'] + "\n";
-  document.getElementById("modal-score").innerHTML = "Score: " + current_dict['score'] + "\n";
-  document.getElementById("modal-type").innerHTML = "Type: " + current_dict['type'] + "\n";
-  document.getElementById("modal-release").innerHTML = "Premiered: " + current_dict['premiered'] + "\n";
+  document.getElementById("modal-synopsis").innerHTML = "<b>Synopsis:</b> " + current_dict['synopsis'] + "\n";
+  document.getElementById("modal-score").innerHTML = "<b>Score:</b> " + current_dict['score'] + "\n";
+  document.getElementById("modal-type").innerHTML = "<b>Type:</b> " + current_dict['type'] + "\n";
+  document.getElementById("modal-release").innerHTML = "<b>Premiered:</b> " + current_dict['premiered'] + "\n";
+  document.getElementById("modal-link").innerHTML = "<b>Read More:</b> <a class=\"text-orange-400\" href=\"https://myanimelist.net/anime/" + current_dict['code'] + "\">MyAnimeList</a>  \n";
   toggleModal()
 }
 
