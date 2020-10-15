@@ -259,7 +259,7 @@ function fillModal(type, key){
   document.getElementById("modal-score").innerHTML = "<b>Score:</b> " + current_dict['score'] + "\n";
   document.getElementById("modal-type").innerHTML = "<b>Type:</b> " + current_dict['type'] + "\n";
   document.getElementById("modal-release").innerHTML = "<b>Premiered:</b> " + current_dict['premiered'] + "\n";
-  document.getElementById("modal-link").innerHTML = "<b>Read More:</b> <a class=\"text-orange-400\" href=\"https://myanimelist.net/anime/" + current_dict['code'] + "\">MyAnimeList</a>  \n";
+  document.getElementById("modal-link").innerHTML = "<b>Read More:</b> <a class=\"text-orange-400\" href=\"https://myanimelist.net/anime/" + current_dict['code'] + "\" target=\"_blank\">MyAnimeList</a>  \n";
   toggleModal()
 }
 
