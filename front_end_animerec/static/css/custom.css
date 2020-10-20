@@ -197,6 +197,17 @@ body.modal-active {
   overflow-y: visible !important;
 }
 
+.tooltip .tooltip-text {
+  visibility: hidden;
+  text-align: left;
+  padding: 2px 6px;
+  position: absolute;
+  z-index: 100;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
 h1{font-size:64px;}
 h2{font-size:48px;}
 h3{font-size:36px;}

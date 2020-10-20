@@ -127,30 +127,47 @@ function rateRecs(query, rec, rating, rec_type, button_id){
 }
 
 function addTitle(rec_type){
+  const title_row = document.createElement('div');
+  title_row.className = "recommendation_row_title"
+  title_row.classList.add('font-sans', "items-center", "justify-center", "flex");
+
   const title = document.createElement('h4');
-  title.className = "recommendation_row_title"
-  title.classList.add('font-sans', 'font-bold', "text-center");
+  title.classList.add('font-bold');
 
   var html_fill = rec_type;
+  var info_fill = "";
   switch(rec_type) {
     case "hot":
       html_fill = "Newest and Most Similar"
+      info_fill = "<b>Matches with recently released anime that have similar review descriptions</b> "
       break;
     case "beloved":
       html_fill = "Popular and Most Similar"
+      info_fill = "<b>Matches with the highest scoring anime on MyAnimeList that have similar review descriptions</b>"
       break;
     case "similarly_described":
       html_fill = "Similar Reviews"
+      info_fill = "<b>Matches with anime that have similar review descriptions</b> <br>(Example: Epic animes are matched with thrilling animes)"
       break;
     case "similar_synopsis":
       html_fill = "Similar Plot"
+      info_fill = "<b>Matches with anime that have a similar plot, storyline or theme(s)</b>"
       break;
     default:
       // do nothing
   }
-  title.innerHTML = html_fill;
+  title.innerHTML = html_fill
 
-  selectedAnime.appendChild(title);
+  const tooltip = document.createElement('div');
+  tooltip.classList.add('tooltip', 'mx-3');
+  
+  tooltip.innerHTML = `<i class="material-icons align-middle">info_outline</i> 
+    <span class='tooltip-text bg-gray-300 p-3 ml-3 shadow-lg rounded'>` + info_fill + `</span>`;
+
+  title_row.appendChild(title);
+  title_row.appendChild(tooltip);
+
+  selectedAnime.appendChild(title_row);
 }
 
 document.getElementById("submit").addEventListener('click', sendQuery);
