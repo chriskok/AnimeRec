@@ -206,7 +206,7 @@ function sendQuery(e) {
               recommendation.innerHTML = 
               `
                 <div class="recommendation-picture cursor-pointer mb-4">
-                  <img class="max-h-full" src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
+                  <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
                 </div>
                 <div class="mx-2 text-center text-base lg:text-lg">
                   ` + animeTitle + `
@@ -256,7 +256,7 @@ function filterFunction() {
 function fillModal(type, key){
   var current_dict = REC_DICT[type][key];
   document.getElementById("modal-title").innerHTML = current_dict['full_title'];
-  document.getElementById("modal-synopsis").innerHTML = "<b>Synopsis:</b> " + current_dict['synopsis'] + "\n";
+  document.getElementById("modal-synopsis").innerHTML = "" + current_dict['synopsis'] + "\n";
   document.getElementById("modal-score").innerHTML = "<b>Score:</b> " + current_dict['score'] + "\n";
   document.getElementById("modal-type").innerHTML = "<b>Type:</b> " + current_dict['type'] + "\n";
   document.getElementById("modal-release").innerHTML = "<b>Premiered:</b> " + current_dict['premiered'] + "\n";
