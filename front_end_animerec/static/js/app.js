@@ -194,6 +194,12 @@ function sendQuery(e) {
       console.log(json_recom);
       removeElement("recommendation_row"); // remove all preexisting recommendations
       removeElement("recommendation_row_title"); // remove all preexisting recommendations
+
+      // add overarching title
+      const query_title = document.createElement('h3');
+      query_title.classList.add('recommendation_row_title', 'font-bold', 'text-center');
+      query_title.innerHTML = `Showing anime similar to <span class="text-orange-500">` + chosen_anime + `</span>`;
+      selectedAnime.appendChild(query_title);
           
       // Go over each type of recommendation
       for (var type in json_recom) {
