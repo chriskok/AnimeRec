@@ -190,7 +190,7 @@ function sendQuery(e) {
           // Create the row for the recommendations to fall under
           const recommendation_row = document.createElement('div');
           recommendation_row.className = "recommendation_row"
-          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'text-white', 'font-bold', 'flex');
+          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'text-white', 'font-semibold', 'flex');
           
           // Go over each anime list for the particular type of recommendation
           for (var curr_key in recom_dict) {
@@ -202,16 +202,17 @@ function sendQuery(e) {
               const animeTitle = individual_rec_dict['full_title']; 
               const animeImage = individual_rec_dict['image_url'];
               recommendation.className = "recommendation"
-              recommendation.classList.add("flex-1", "recommendation-container");
+              recommendation.classList.add("container", "relative", "flex-initial", "recommendation-container");
               recommendation.innerHTML = 
               `
-                <div class="recommendation-text mx-2 text-center text-base lg:text-lg">
+                <div class="recommendation-picture cursor-pointer mb-4">
+                  <img class="max-h-full" src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
+                </div>
+                <div class="mx-2 text-center text-base lg:text-lg">
                   ` + animeTitle + `
                 </div>
-                <div class="recommendation-picture cursor-pointer mb-4">
-                  <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
-                </div>
-                <div class="button-div mb-4">
+                <div class="h-10"></div>
+                <div class="absolute inset-x-0 bottom-0 button-div mb-4 ">
                   <button type="button" id="likebtn-` + type + `-` + curr_key + `" class="block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1, '` + type + `','` + curr_key + `')">
                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"/></svg>
                     Like
