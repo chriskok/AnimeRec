@@ -22,7 +22,13 @@ function getAnimeNames(){
   return names_request_xhttp;
 }
 
-// ####### Functions ############
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function appInit() {
   sendButton.disabled = true;
   sendButton.classList.add('cursor-not-allowed', 'opacity-50');
@@ -33,6 +39,7 @@ function appInit() {
       // populate dropdown
       var select = document.getElementById("anime_names"); 
       var name_list = JSON.parse(names_request_xhttp.responseText)['names'];
+      shuffleArray(name_list);
       for(var i = 0; i < name_list.length; i++) {
           var opt = name_list[i];
           var el = document.createElement("option");
