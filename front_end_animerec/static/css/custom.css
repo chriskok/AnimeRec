@@ -199,8 +199,6 @@ body.modal-active {
 
 .tooltip .tooltip-text {
   visibility: hidden;
-  text-align: left;
-  padding: 2px 6px;
   position: absolute;
   z-index: 100;
 }

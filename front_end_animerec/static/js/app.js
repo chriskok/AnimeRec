@@ -162,7 +162,7 @@ function addTitle(rec_type){
   tooltip.classList.add('tooltip', 'mx-3');
   
   tooltip.innerHTML = `<i class="material-icons align-middle">info_outline</i> 
-    <span class='tooltip-text bg-gray-300 p-3 ml-3 shadow-lg rounded'>` + info_fill + `</span>`;
+    <span class='tooltip-text bg-gray-300 p-3 ml-3 shadow-lg rounded text-left'>` + info_fill + `</span>`;
 
   title_row.appendChild(title);
   title_row.appendChild(tooltip);
@@ -172,6 +172,7 @@ function addTitle(rec_type){
 
 document.getElementById("submit").addEventListener('click', sendQuery);
 var REC_DICT = {};  // global dictionary for current recommendations
+var SEARCH_COUNT = 0;
 
 // Function to send query and process results
 function sendQuery(e) {
@@ -180,6 +181,8 @@ function sendQuery(e) {
   var chosen_anime = document.getElementById("selected-title").value;
   console.log('Query Sent: ' + chosen_anime);
   var current_recom = requestRecommendations(chosen_anime);
+
+  SEARCH_COUNT++;
   
   gtag('event', 'search', {
     'event_label' : chosen_anime
@@ -195,9 +198,9 @@ function sendQuery(e) {
       removeElement("recommendation_row"); // remove all preexisting recommendations
       removeElement("recommendation_row_title"); // remove all preexisting recommendations
 
-      // add overarching title
+      // add overarching title based on query
       const query_title = document.createElement('h3');
-      query_title.classList.add('recommendation_row_title', 'font-bold', 'text-center');
+      query_title.classList.add('recommendation_row_title', 'font-bold', 'text-center', 'my-5');
       query_title.innerHTML = `Showing anime similar to <span class="text-orange-500">` + chosen_anime + `</span>`;
       selectedAnime.appendChild(query_title);
           
@@ -213,7 +216,7 @@ function sendQuery(e) {
           // Create the row for the recommendations to fall under
           const recommendation_row = document.createElement('div');
           recommendation_row.className = "recommendation_row"
-          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'text-white', 'font-semibold', 'flex');
+          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'flex');
           
           // Go over each anime list for the particular type of recommendation
           for (var curr_key in recom_dict) {
@@ -224,6 +227,14 @@ function sendQuery(e) {
               const recommendation = document.createElement('div');
               const animeTitle = individual_rec_dict['full_title']; 
               const animeImage = individual_rec_dict['image_url'];
+
+              // Decide if the like/dislike tooltip is necessary
+              var tooltip_text = "";
+              
+              if(SEARCH_COUNT <= 1){
+                tooltip_text = "<span class='tooltip-text bg-black text-center text-white p-3 -mt-16 shadow-lg rounded left-0' style='opacity: 0.85;'>Does this recommendation make sense?</span>";
+              }
+
               recommendation.className = "recommendation"
               recommendation.classList.add("container", "relative", "flex-initial", "recommendation-container");
               recommendation.innerHTML = 
@@ -231,15 +242,15 @@ function sendQuery(e) {
                 <div class="recommendation-picture cursor-pointer mb-4">
                   <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
                 </div>
-                <div class="mx-2 text-center text-base lg:text-lg">
+                <div class="mx-2 text-center text-base lg:text-lg text-white font-semibold">
                   ` + animeTitle + `
                 </div>
                 <div class="h-10"></div>
-                <div class="absolute inset-x-0 bottom-0 button-div mb-4 ">
-                  <button type="button" id="likebtn-` + type + `-` + curr_key + `" class="block bg-transparent py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1, '` + type + `','` + curr_key + `')">
+                <div class="absolute inset-x-0 bottom-0 button-div mb-4 tooltip">` + tooltip_text + `
+                  <button type="button" id="likebtn-` + type + `-` + curr_key + `" class="text-white font-semibold block bg-transparent py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',1, '` + type + `','` + curr_key + `')">
                     <i class="material-icons">thumb_up</i>
                   </button>
-                  <button type="button" id="dislikebtn-` + type + `-` + curr_key + `" class="block bg-transparent py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',0, '` + type + `','` + curr_key + `')">
+                  <button type="button" id="dislikebtn-` + type + `-` + curr_key + `" class="text-white font-semibold block bg-transparent py-2 px-4 rounded inline-flex items-center" onclick="rateRecs('` + chosen_anime + `','` + animeTitle + `',0, '` + type + `','` + curr_key + `')">
                     <i class="material-icons">thumb_down</i> 
                   </button>
                 </div>
