@@ -39,7 +39,8 @@ function appInit() {
       // populate dropdown
       var select = document.getElementById("anime_names"); 
       var name_list = JSON.parse(names_request_xhttp.responseText)['names'];
-      shuffleArray(name_list);
+      // shuffleArray(name_list); // randomize entries in the array
+      // name_list.sort(); // sort the names in alphabetical order
       for(var i = 0; i < name_list.length; i++) {
           var opt = name_list[i];
           var el = document.createElement("option");
@@ -223,7 +224,7 @@ function sendQuery(e) {
           // Create the row for the recommendations to fall under
           const recommendation_row = document.createElement('div');
           recommendation_row.className = "recommendation_row"
-          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'flex');
+          recommendation_row.classList.add('text-left', 'mb-5', 'p-2', 'bg-orange-500', 'md:flex');
           
           // Go over each anime list for the particular type of recommendation
           for (var curr_key in recom_dict) {
@@ -239,7 +240,7 @@ function sendQuery(e) {
               var tooltip_text = "";
               
               if(SEARCH_COUNT <= 1){
-                tooltip_text = "<span class='tooltip-text bg-black text-center text-white p-3 -mt-16 shadow-lg rounded left-0' style='opacity: 0.85;'>Does this recommendation make sense?</span>";
+                tooltip_text = "<span class='tooltip-text bg-black text-center text-white p-3 -mt-16 shadow-lg rounded left-0' style='opacity: 0.85;'>Does this anime fit the category above?</span>";
               }
 
               recommendation.className = "recommendation"
