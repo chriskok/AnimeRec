@@ -247,8 +247,8 @@ function sendQuery(e) {
               recommendation.classList.add("container", "relative", "flex-initial", "recommendation-container");
               recommendation.innerHTML = 
               `
-                <div class="recommendation-picture cursor-pointer mb-4">
-                  <img src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
+                <div class="recommendation-picture cursor-pointer mb-4 text-center">
+                  <img class="inline" src="` + animeImage +  `" onclick="fillModal('` + type + `', ` + curr_key + `)">
                 </div>
                 <div class="mx-2 text-center text-base lg:text-lg text-white font-semibold">
                   ` + animeTitle + `
