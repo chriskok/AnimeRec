@@ -1,8 +1,10 @@
 # Anime Recommendation System
 
-## User Interface Shape 
+## Homepage
 
-![User Interface for Recommendation Tentative](https://github.com/chriskok/ChronicCoderAcademy/blob/master/front_end_animerec/static/assets/images/ShapeUI.png)
+Visit the live site here: http://3.131.210.47:5000/
+
+![Our Sprint 1 Homepage](https://github.com/chriskok/AnimeRec/blob/master/management/images/sprint1_homepage.png)
 
 ## Installation
 git clone --recurse-submodules -j8 https://github.com/chriskok/AnimeRec.git
