@@ -26,11 +26,11 @@ As we've learnt from the UX research from Sprint 1, the main problems faced were
 
 ### The frontend 
 - More visuals on the homepage and a more professional design in general
-![Suggested homepage](./images/sprint2/sprint2_home.PNG)
+![Suggested homepage](./images/sprint2/sprint2_home.png)
 - Allow for more recommendations with a carousel
-![Suggested homepage](./images/sprint2/sprint2_searched.PNG)
+![Suggested homepage](./images/sprint2/sprint2_searched.png)
 - Better, more useful information in the pop-up (either for credibility or benefit - like where to watch)
-![Suggested homepage](./images/sprint2/sprint2_popup.PNG)
+![Suggested homepage](./images/sprint2/sprint2_popup.png)
 
 ## Rabbit Holes
 Here are some details about the solution worth calling out to avoid future problems:
