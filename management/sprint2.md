@@ -21,7 +21,10 @@ As we've learnt from the UX research from Sprint 1, the main problems faced were
 - Scrape other useful sources of data for aggregating and presenting wanted information (reddit, where-to-watch, etc.)
    - Reddit: They have recent in-season anime that are constantly voted on. Upon arrival at the hompage we can suggest ones that are more general based on trending anime currently.
    - Where to Watch: We can present this information in the pop-up if a user wants to know.
-- Test algorithms with different features like genre based (randomanime.org has amazing traffic with just matching the genres), plot style (e.g. comedy plots could be written differently than drama), etc.
+   - AniDB: character traits can be used for explainability
+- Add on different features to our algorithms like genres (randomanime.org has amazing traffic with just matching the genres - we can also match them first before using review similiarity), plot style (e.g. comedy plots could be written differently than drama), character traits (from AniDB), etc.
+- Feed more information to the front-end (jap/english titles, genres for each anime, etc.)
+- Improve preprocessing for text-based similarity recommendations (stripping entities, etc.)
 
 
 ### The frontend 
@@ -29,8 +32,9 @@ As we've learnt from the UX research from Sprint 1, the main problems faced were
 ![Suggested homepage](./images/sprint2/sprint2_home.png)
 - Allow for more recommendations with a carousel
 ![Suggested homepage](./images/sprint2/sprint2_searched.png)
-- Better, more useful information in the pop-up (either for credibility or benefit - like where to watch)
+- Better, more useful information in the pop-up (either for credibility or benefit - like where to watch, number of users recommended through MAL, etc.)
 ![Suggested homepage](./images/sprint2/sprint2_popup.png)
+- Move like/dislike button to inside the popup
 
 ## Rabbit Holes
 Here are some details about the solution worth calling out to avoid future problems:
@@ -47,6 +51,7 @@ These represent things we want to conciously and actively avoid this sprint (but
 - Allow users to select and avoid previously watched anime from being recommended
 - Computer Vision techniques for poster or artstyle similarity to feed into existing algorithms
 - Adding more rows with different algorithms (potentially collaborative filtering in the future)
+- Adding more randomness to recommendations
 
 ## Competition
 - https://www.randomanime.org/anime-like/ranma/
