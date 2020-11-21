@@ -1,11 +1,11 @@
-# AnimeRec: Sprint 2 Pitch
+# AnimeRec: Second Cycle Pitch
 
 ## Problem
 Main premise: This is the continuation of the Anime Recommendation System project where our main goal was automating the process of anime recommendations. Recs for anime as it currently stands stems from 3 prime sources: friends, youtubers who speak on generally well received anime (Anitubers - produce videos about best of the season/year/decade), and crowd sourced recs (MyAnimeList - which has "if you liked X, you'll like Y" recs that are user submitted). These were all manual and required some digging if you wanted to get a whole list of anime to watch based on your personal preferences while also taking into account new and popular anime.
 
-As we've learnt from the UX research from Sprint 1, the main problems faced were:
+As we've learnt from the UX research from Cycle 1, the main problems faced were:
 1. Trust in the algorithms and the website 
-    - Not enough anime posters off the bat. E.g. MyAnimeList homepage: ![MAL homepage example](./images/sprint2/MAL_home.PNG)
+    - Not enough anime posters off the bat. E.g. MyAnimeList homepage: ![MAL homepage example](./images/cycle2/MAL_home.PNG)
     - Algorithm results were not as expected - stein's gate queried, no re:zero recommended
     - People didn't understand how the algorithms worked
     - No sense of credibility - reddit upvotes or MAL number of users recommended)
@@ -29,11 +29,11 @@ As we've learnt from the UX research from Sprint 1, the main problems faced were
 
 ### The frontend 
 - More visuals on the homepage and a more professional design in general
-![Suggested homepage](./images/sprint2/sprint2_home.png)
+![Suggested homepage](./images/cycle2/cycle2_home.png)
 - Allow for more recommendations with a carousel
-![Suggested homepage](./images/sprint2/sprint2_searched.png)
+![Suggested homepage](./images/cycle2/cycle2_searched.png)
 - Better, more useful information in the pop-up (either for credibility or benefit - like where to watch, number of users recommended through MAL, etc.)
-![Suggested homepage](./images/sprint2/sprint2_popup.png)
+![Suggested homepage](./images/cycle2/cycle2_popup.png)
 - Move like/dislike button to inside the popup
 
 ## Rabbit Holes
@@ -41,11 +41,11 @@ Here are some details about the solution worth calling out to avoid future probl
 - Will it be possible to scrape from MAL's recommendations with the Jikan API that we've used - will it take too long to use typical webscraping tools like beautifulsoup?
 - Will we be allowed to take the information gathered from reddit upvotes? We may need to ask for admin permission before grabbing that data. If allowed, scraping from reddit is easy with python!
 - Where do we get "where to watch" data? I haven't found an easy solution personally but I don't have the internet rn to really search for one... My guess is there could be an API for each individual platform (crunchyroll, netflix, etc.)
-- Might need a complete redesign and code from the ground up for the frontend. E.g. carousel rows were difficult to do with dynamic data from the last sprint (but we can cut down the scope for it if necessary). Plus it could make it more professional in general.
+- Might need a complete redesign and code from the ground up for the frontend. E.g. carousel rows were difficult to do with dynamic data from the last cycle (but we can cut down the scope for it if necessary). Plus it could make it more professional in general.
 
 
 ## No-Gos
-These represent things we want to conciously and actively avoid this sprint (but they stand as good ideas going into future ones):
+These represent things we want to conciously and actively avoid this cycle (but they stand as good ideas going into future ones):
 - Selection of multiple animes for more personalization
 - Filtering by genres or any specific tags
 - Allow users to select and avoid previously watched anime from being recommended
