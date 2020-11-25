@@ -27,3 +27,9 @@ Visit the live site here: http://3.131.210.47:5000/
 2. Start the API (if necessary, use a different terminal)
     - `cd anime-recommendation-system`
     - `uvicorn main:api --reload`
+
+### API Syntax
+To see the latest API docs, you can go to http://3.131.210.47:8000/docs. It's currently a JSON format with each row as the key and an array of recommendationss. We've decided that the only changes are going to be the info stored in the recommendations themselves (we'll be adding genre/tags that match, recommendation_count (if applicable), words that match (if applicable)) for this next cycle.
+
+## Next Steps
+Check out our pitch for the [Anime Recommendation Project's Second Cycle](/management/cycle2.md). 
