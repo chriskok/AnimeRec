@@ -7,7 +7,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - "/home/ec2-user/front_end_animerec:/front_end_animerec"
+      - "/home/nvidia/Desktop/AnimeRec/front_end_animerec:/front_end_animerec"
     deploy:
       resources:
         limits:
@@ -21,7 +21,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - "/home/ec2-user/anime-recommendation-system:/api"
+      - "/home/nvidia/Desktop/AnimeRec/anime-recommendation-system:/api"
   
   react:
     build: ./front_end_animerec/react_code
@@ -30,4 +30,4 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "/home/ec2-user/front_end_animerec/react_code:/react_code"
+      - "/home/nvidia/Desktop/AnimeRec/front_end_animerec/react_code:/react_code"

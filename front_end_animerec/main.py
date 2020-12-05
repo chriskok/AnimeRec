@@ -7,7 +7,7 @@ app = Flask(__name__, static_folder='./static')
 CORS(app, support_credentials=True)
 
 #Url that points to where the api is running on
-API_URL = "http://3.131.210.47:8000"
+API_URL = "http://api:8000"
 
 @app.route("/", methods=["GET"])
 @cross_origin(supports_credentials=True)
