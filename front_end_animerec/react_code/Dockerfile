@@ -4,7 +4,7 @@ FROM node:10
  
 # A directory within the virtualized Docker environment
 # Becomes more relevant when using Docker Compose later
-WORKDIR /react_code
+WORKDIR /usr/src/app
  
 # Copies package.json and package-lock.json to Docker environment
 COPY package*.json ./
@@ -13,7 +13,7 @@ COPY package*.json ./
 RUN npm install
  
 # Copies everything over to Docker environment
-COPY . /react_code
+COPY . .
  
 # Finally runs the application
 CMD [ "npm", "start" ]
