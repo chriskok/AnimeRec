@@ -11,8 +11,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.30'
-          memory: 250M
+          cpus: '0.20'
+          memory: 200M
   
   api:
     build: ./anime-recommendation-system
@@ -22,3 +22,12 @@ services:
       - "8000:8000"
     volumes:
       - "/home/ec2-user/anime-recommendation-system:/api"
+  
+  react:
+    build: ./front_end_animerec/react_code
+    image: react:latest
+    container_name: react
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/home/ec2-user/front_end_animerec/react_code:/react_code"
