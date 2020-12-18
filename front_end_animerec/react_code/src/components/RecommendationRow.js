@@ -8,10 +8,14 @@ import {
 	makeStyles,
 	Tooltip,
 	Typography,
+	Button,
+	CardActions,
 } from "@material-ui/core";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import React from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
+import RecommendationPage from "../containers/RecommendationPage";
 
 const useStyles = makeStyles({
 	root: {
@@ -42,24 +46,27 @@ export default function RecommendationRow({
 					{_.map(data, (item) => (
 						<Grid item>
 							<Card>
-								<CardActionArea>
-									<CardContent>
-										<CardMedia
-											component='img'
-											width='140'
-											image={item.image_url}
-										/>
-										<Typography
-											align='center'
-											variant='h6'
-											gutterBottom
-											noWrap
-											style={{ maxWidth: "225px" }}
-										>
-											{item.full_title}
-										</Typography>
-									</CardContent>
-								</CardActionArea>
+								{" "}
+								<Link to={`/recommendation/${item.code}`}>
+									<CardActionArea>
+										<CardContent>
+											<CardMedia
+												component='img'
+												width='140'
+												image={item.image_url}
+											/>
+											<Typography
+												align='center'
+												variant='h6'
+												gutterBottom
+												noWrap
+												style={{ maxWidth: "225px" }}
+											>
+												{item.full_title}
+											</Typography>
+										</CardContent>
+									</CardActionArea>
+								</Link>
 							</Card>
 						</Grid>
 					))}

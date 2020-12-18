@@ -10,7 +10,9 @@ import {
 	makeStyles,
 	withStyles,
 } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import React from "react";
+import _ from "lodash";
 import { getNames, getRecommendations } from "../actions";
 import RecommendationRow from "../components/RecommendationRow";
 
@@ -51,6 +53,13 @@ class Home extends React.Component {
 		inputValue: "",
 		recommendations: null,
 		currentSearchTitle: null,
+		animeList: [],
+		selectedAnime: null,
+	};
+
+	componentDidMount = async () => {
+		const animeList = await getNames();
+		this.setState({ animeList });
 	};
 
 	onInputFieldChange = (value) => {
@@ -63,29 +72,28 @@ class Home extends React.Component {
 	};
 
 	recommend = async () => {
-		const recommendations = await getRecommendations(this.state.inputValue);
+		const recommendations = await getRecommendations(
+			this.state.selectedAnime.animeId
+		);
 		this.setState({
 			recommendations,
-			currentSearchTitle: this.state.inputValue,
+			currentSearchTitle: this.state.selectedAnime.animeTitles[0],
 		});
 	};
 
 	render() {
 		const { classes } = this.props;
-		const { recommendations } = this.state;
+		const { recommendations, animeList } = this.state;
+		const autocompleteOptions = _.map(animeList.names, (item) => {
+			const arrLen = _.size(item);
+			return {
+				animeId: item[arrLen - 1],
+				animeTitles: _.slice(item, 0, arrLen - 1),
+			};
+		});
 
 		return (
 			<React.Fragment>
-				<CssBaseline />
-
-				<AppBar position='relative'>
-					<Toolbar>
-						<Typography variant='h6' color='inherit' noWrap>
-							Chronic Coder Anime Recommendations
-						</Typography>{" "}
-					</Toolbar>
-				</AppBar>
-
 				<div className={classes.heroContent}>
 					<Container maxWidth='md'>
 						<Typography
@@ -108,12 +116,26 @@ class Home extends React.Component {
 							titles to you!
 						</Typography>
 
-						<TextField
+						{/* <TextField
 							label='Search'
 							variant='outlined'
 							fullWidth
 							value={this.state.inputValue}
 							onChange={(e) => this.onInputFieldChange(e.target.value)}
+						/> */}
+
+						<Autocomplete
+							id='search-input'
+							options={autocompleteOptions}
+							getOptionLabel={(option) => option.animeTitles[0]}
+							renderInput={(params) => (
+								<TextField
+									{...params}
+									label='Search for anime'
+									variant='outlined'
+								/>
+							)}
+							onChange={(e, value) => this.setState({ selectedAnime: value })}
 						/>
 
 						<div className={classes.heroButtons}>
@@ -128,7 +150,11 @@ class Home extends React.Component {
 									</Button>
 								</Grid>
 								<Grid item>
-									<Button variant='outlined' color='primary'>
+									<Button
+										variant='outlined'
+										color='primary'
+										onClick={() => getNames()}
+									>
 										Secondary action
 									</Button>
 								</Grid>

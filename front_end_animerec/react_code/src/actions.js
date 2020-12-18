@@ -9,14 +9,14 @@ function fetchJson(url, kwds) {
 	}).then((res) => res.json());
 }
 
-const HOSTNAME = "http://127.0.0.1:5000";
-
 export function getNames() {
-	return fetchJson("http://127.0.0.1:5000/get-names");
+	return fetchJson(`/api/v1/get_names`);
 }
 
-export function getRecommendations(title) {
-	return fetchJson(`http://127.0.0.1:5000/get-recommendations/${title}`, {
-		method: "POST",
-	});
+export function getRecommendations(animeId) {
+	return fetchJson(`/api/v1/get_recommendations?anime_code=${animeId}`);
+}
+
+export function getAnime(animeId) {
+	return fetchJson(`/api/v1/get_anime?anime_code=${animeId}`);
 }
