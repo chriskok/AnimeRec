@@ -1,23 +1,24 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-  }
-  
-  ol, ul {
+}
+
+ol,
+ul {
     padding-left: 30px;
-  }
-  
-  .board-row:after {
+}
+
+.board-row:after {
     clear: both;
     content: "";
     display: table;
-  }
-  
-  .status {
+}
+
+.status {
     margin-bottom: 10px;
-  }
-  
-  .square {
+}
+
+.square {
     background: #fff;
     border: 1px solid #999;
     float: left;
@@ -30,22 +31,34 @@ body {
     padding: 0;
     text-align: center;
     width: 34px;
-  }
-  
-  .square:focus {
+}
+
+.square:focus {
     outline: none;
-  }
-  
-  .kbd-navigation .square:focus {
+}
+
+.kbd-navigation .square:focus {
     background: #ddd;
-  }
-  
-  .game {
+}
+
+.game {
     display: flex;
     flex-direction: row;
-  }
-  
-  .game-info {
+}
+
+.game-info {
     margin-left: 20px;
-  }
-  
+}
+
+/* Background */
+.hero-background-main {
+    position: absolute !important;
+    width: 1440px !important;
+    height: 442px !important;
+    left: 0px !important;
+    top: 0px !important;
+
+    background: #1c1a18 !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    color: red !important;
+}

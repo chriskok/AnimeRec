@@ -6,17 +6,23 @@ function fetchJson(url, kwds) {
 		},
 		credentials: "include",
 		...kwds,
-	}).then((res) => res.json());
+	}).then(res => res.json());
 }
 
 export function getNames() {
-	return fetchJson(`/api/v1/get_names`);
+	return fetchJson(`/api/v1/search_info`);
 }
 
 export function getRecommendations(animeId) {
-	return fetchJson(`/api/v1/get_recommendations?anime_code=${animeId}`);
+	return fetchJson(`/api/v1/recommendations?anime_code=${animeId}`);
 }
 
 export function getAnime(animeId) {
-	return fetchJson(`/api/v1/get_anime?anime_code=${animeId}`);
+	return fetchJson(`/api/v1/anime?anime_code=${animeId}`);
+}
+
+export function getUserReview(animeId, referenceId) {
+	return fetchJson(
+		`/api/v1/user_recommendations?search_anime=${animeId}&recommended_anime=${referenceId}`
+	);
 }
