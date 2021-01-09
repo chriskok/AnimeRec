@@ -11,6 +11,7 @@ We have to get the API ready for integration with randomanime.org. The API is mo
 - Provide character similarity metrics in our knowledge graphs (measure the similarity either in tags or description similarity with NLP)
 - Improve existing algorithms using the validation pipeline
 - Serve the additional recommendation rows/types through the API for differentiation (based on characters or detailed anime tags)
+- Create a EC2 instance that can handle both API and REACT code, deploy the running app on said instance
 
 ### The frontend
 - Take a look at his current set up for anime-like recommendations, think about what we'll want to keep or change
