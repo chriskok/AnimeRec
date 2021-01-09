@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router";
 import Home from "./containers/Home";
 import RecommendationPage from "./containers/RecommendationPage";
 import Recommendations from "./containers/Recommendations";
-import SemanticHome from "./containers/SemanticHome";
 import { Menu, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
@@ -26,7 +25,6 @@ const Layout = () => {
 
 			<Switch>
 				<Route exact path="/" component={Home} />
-				<Route exact path="/home" component={SemanticHome} />
 				<Route
 					path={`/anime/:animeId`}
 					exact
