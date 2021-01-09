@@ -1,18 +1,18 @@
 version: '3'
 services:
-  webapp:
-    build: ./front_end_animerec
-    image: webapp:latest
-    container_name: webapp
-    ports:
-      - "5000:5000"
-    volumes:
-      - "${PWD-.}/front_end_animerec:/front_end_animerec"
-    deploy:
-      resources:
-        limits:
-          cpus: '0.20'
-          memory: 200M
+  # webapp:
+  #   build: ./front_end_animerec
+  #   image: webapp:latest
+  #   container_name: webapp
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - "${PWD-.}/front_end_animerec:/front_end_animerec"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.20'
+  #         memory: 200M
   
   api:
     build: ./anime-recommendation-system
@@ -24,10 +24,11 @@ services:
       - "${PWD-.}/anime-recommendation-system:/api"
   
   react:
-    build: ./front_end_animerec/react_code
+    build: ./front_end_animerec
     image: react:latest
     container_name: react
     ports:
       - "3000:3000"
-    volumes:
-      - "${PWD-.}/front_end_animerec/react_code:/usr/src/app"
+    # volumes:
+    #   - "${PWD-.}/front_end_animerec:/usr/src/app"
+    stdin_open: true
