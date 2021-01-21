@@ -13,8 +13,10 @@ export function getNames() {
 	return fetchJson(`/api/v1/search_info`);
 }
 
-export function getRecommendations(animeId) {
-	return fetchJson(`/api/v1/recommendations?anime_code=${animeId}`);
+export function getRecommendations(animeId, quantity = 5) {
+	return fetchJson(
+		`/api/v1/recommendations?anime_code=${animeId}&n_recommendations=${quantity}`
+	);
 }
 
 export function getAnime(animeId) {

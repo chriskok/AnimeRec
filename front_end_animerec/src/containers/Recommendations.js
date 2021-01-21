@@ -87,7 +87,7 @@ class Recommendations extends React.Component {
 	componentDidMount = async () => {
 		const animeId = this.props.match.params.searchId;
 		const referenceAnime = await getAnime(animeId);
-		const recommendations = await getRecommendations(animeId);
+		const recommendations = await getRecommendations(animeId, 15);
 		this.setState({ referenceAnime, recommendations });
 	};
 
@@ -101,17 +101,21 @@ class Recommendations extends React.Component {
 
 		const { referenceAnime } = this.state;
 		const recCategoryOptions = [
+			"Genre",
 			"Plot",
 			"Popularity",
 			"Release Date",
 			"Reviews",
+			"Similar Characters",
 		];
 
 		const recCategoryMapping = {
+			Genre: "genre_match",
 			Plot: "similar_synopsis",
 			Popularity: "beloved",
 			"Release Date": "hot",
 			Reviews: "similarly_described",
+			"Similar Characters": "characters_match",
 		};
 
 		const animeToDisplay = this.state.recommendations[
@@ -170,6 +174,7 @@ class Recommendations extends React.Component {
 							/>
 						))}
 					</Card.Group>
+					<Divider hidden />
 					{/* <Grid columns={3} relaxed>
 						{_.map(this.state.recommendations.beloved, anime => (
 							<Grid.Column>
