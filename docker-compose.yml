@@ -10,22 +10,22 @@ services:
     volumes:
       - "${PWD-.}/anime-recommendation-system:/api"
   
-  # react:
-  #   build: ./front_end_animerec
-  #   image: react:latest
-  #   container_name: react
-  #   ports:
-  #     - "3000:3000"
-  #   # volumes:
-  #   #   - "${PWD-.}/front_end_animerec:/usr/src/app"
-  #   stdin_open: true
-
-  react_prod:
-    image: react:prod
-    container_name: react_prod
-    build: 
-        context: ./front_end_animerec
-        dockerfile: Dockerfile.prod
+  react:
+    build: ./front_end_animerec
+    image: react:latest
+    container_name: react
     ports:
-      - '3000:80'
+      - "3000:3000"
+    # volumes:
+    #   - "${PWD-.}/front_end_animerec:/usr/src/app"
     stdin_open: true
+
+  # react_prod:
+  #   image: react:prod
+  #   container_name: react_prod
+  #   build: 
+  #       context: ./front_end_animerec
+  #       dockerfile: Dockerfile.prod
+  #   ports:
+  #     - '3000:80'
+  #   stdin_open: true
