@@ -1,6 +1,6 @@
 # Docker Image which is used as foundation to create
 # a custom Docker Image with this Dockerfile
-FROM node:10
+FROM node:13.12.0-alpine as build
  
 # A directory within the virtualized Docker environment
 # Becomes more relevant when using Docker Compose later
@@ -16,4 +16,12 @@ RUN npm install
 COPY . .
  
 # Finally runs the application
-CMD ["npm", "start"]
+RUN npm run build
+
+
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+COPY ./nginx.config /etc/nginx/nginx.template
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
