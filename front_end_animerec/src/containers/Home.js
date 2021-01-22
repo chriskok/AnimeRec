@@ -90,7 +90,8 @@ class Home extends React.Component {
 		const { recommendations, animeList } = this.state;
 
 		const filterOptions = createFilterOptions({
-			stringify: option => _.join(option.alternate_titles),
+			stringify: option =>
+				_.join(_.concat(option.display_title, option.alternate_titles)),
 			limit: 15,
 		});
 
