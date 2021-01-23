@@ -81,7 +81,7 @@ class Recommendations extends React.Component {
 	state = {
 		referenceAnime: null,
 		recommendations: {},
-		recCategory: "Release Date",
+		recCategory: "Genre",
 	};
 
 	componentDidMount = async () => {
