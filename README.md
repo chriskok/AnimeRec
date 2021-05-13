@@ -2,7 +2,7 @@
 
 ## Homepage
 
-Visit the live site here: http://3.131.210.47:5000/
+Check out our API in action here: https://www.randomanime.org/anime-like/
 
 ![Our Cycle 1 Homepage](./management/images/sprint1_homepage.png)
 
